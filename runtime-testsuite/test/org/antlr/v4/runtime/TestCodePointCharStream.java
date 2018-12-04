@@ -175,12 +175,18 @@ public class TestCodePointCharStream {
 	public void getTextWithLatin() {
 		CodePointCharStream s = CharStreams.fromString("0123456789");
 		assertEquals("34567", s.getText(Interval.of(3, 7)));
+        assertEquals("345678", s.getText(Interval.of(3, 8)));
+        assertEquals("3456789", s.getText(Interval.of(3, 9)));
+        assertEquals("3456789", s.getText(Interval.of(3, 10)));
 	}
 
 	@Test
 	public void getTextWithCJK() {
 		CodePointCharStream s = CharStreams.fromString("01234\u40946789");
 		assertEquals("34\u409467", s.getText(Interval.of(3, 7)));
+        assertEquals("34\u4094678", s.getText(Interval.of(3, 8)));
+        assertEquals("34\u40946789", s.getText(Interval.of(3, 9)));
+        assertEquals("34\u40946789", s.getText(Interval.of(3, 10)));
 	}
 
 	@Test
